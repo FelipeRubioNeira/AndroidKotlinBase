@@ -12,7 +12,7 @@ import com.app.test.src.ui.screens.userList.UserListScreen
 
 
 @Composable
-fun MainNavigator() {
+fun StackNavigator() {
 
     val navController = rememberNavController()
 
@@ -21,16 +21,14 @@ fun MainNavigator() {
         // --------------------- screens --------------------- //
 
         // UserListScreen
-        composable(route = ScreensApp.USER_LIST) {
-            UserListScreen(navController)
-        }
+        composable(route = ScreensApp.USER_LIST) { UserListScreen(navController) }
 
         // UserDetailScreen
         composable(
             route = ScreensApp.USER_DETAIL,
             arguments = listOf(navArgument("userId") { type = NavType.IntType },
                 navArgument("name") { type = NavType.StringType })
-        ) {navigation->
+        ) { navigation ->
             val userId = navigation.arguments?.getInt("userId")
             val name = navigation.arguments?.getString("name")
             UserDetailScreen(userId, name)
